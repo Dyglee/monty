@@ -6,7 +6,7 @@ global_vars global;
 
 int main(int argc, char *argv[])
 {
-    stack_node *stack_head = NULL;
+    stack_t *stack_head = NULL;
     char *line = NULL;
     size_t len = 0;
     unsigned int line_number = 0;

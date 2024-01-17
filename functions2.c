@@ -5,9 +5,9 @@
  * @stack_head: Pointer to the head of the stack.
  * @line_number: Line number in the file.
  */
-void add_top_two(stack_node **stack_head, unsigned int line_number)
+void add_top_two(stack_t **stack_head, unsigned int line_number)
 {
-    stack_node *current_node;
+    stack_t *current_node;
     int stack_length = 0, sum;
 
     current_node = *stack_head;
@@ -27,8 +27,8 @@ void add_top_two(stack_node **stack_head, unsigned int line_number)
     }
 
     current_node = *stack_head;
-    sum = current_node->value + current_node->next->value;
-    current_node->next->value = sum;
+    sum = current_node->n + current_node->next->n;
+    current_node->next->n = sum;
     *stack_head = current_node->next;
     free(current_node);
 }
@@ -38,7 +38,7 @@ void add_top_two(stack_node **stack_head, unsigned int line_number)
  * @stack_head: Pointer to the head of the stack.
  * @line_number: Line number in the file.
  */
-void do_nothing(stack_node **stack_head, unsigned int line_number)
+void do_nothing(stack_t **stack_head, unsigned int line_number)
 {
     (void)line_number;
     (void)stack_head;
@@ -48,10 +48,10 @@ void do_nothing(stack_node **stack_head, unsigned int line_number)
  * free_stack_nodes - Frees the stack.
  * @stack_head: Pointer to the head of the stack.
  */
-void free_stack_nodes(stack_node *stack_head)
+void free_stack_nodes(stack_t *stack_head)
 {
-    stack_node *current_node;
-    stack_node *next_node;
+    stack_t *current_node;
+    stack_t *next_node;
 
     current_node = stack_head;
     while (current_node != NULL)
@@ -67,20 +67,29 @@ void free_stack_nodes(stack_node *stack_head)
  * @stack_head: Pointer to the head of the stack.
  * @n: Integer value to be pushed onto the stack.
  */
-void add_node(stack_node **stack_head, int n)
+
+void add_node(stack_t **stack_head, int n)
 {
-    stack_node *new_node = malloc(sizeof(stack_node));
+    stack_t *new_node = malloc(sizeof(stack_t));
+
     if (new_node == NULL)
     {
+        fprintf(stderr, "Error: malloc failed\n");
+        fclose(global.file_stream);
+        free(global.line_content);
+        free_stack_nodes(*stack_head);
         exit(EXIT_FAILURE);
     }
-    new_node->value = n;
+
+    new_node->n = n;
     new_node->next = *stack_head;
     new_node->prev = NULL;
+
     if (*stack_head != NULL)
     {
         (*stack_head)->prev = new_node;
     }
+
     *stack_head = new_node;
 }
 
@@ -89,15 +98,15 @@ void add_node(stack_node **stack_head, int n)
  * @stack_head: Pointer to the head of the stack.
  * @n: Integer value to be pushed onto the stack.
  */
-void add_queue(stack_node **stack_head, int n)
+void add_queue(stack_t **stack_head, int n)
 {
-    stack_node *new_node = malloc(sizeof(stack_node));
-    stack_node *current = *stack_head;
+    stack_t *new_node = malloc(sizeof(stack_t));
+    stack_t *current = *stack_head;
     if (new_node == NULL)
     {
         exit(EXIT_FAILURE);
     }
-    new_node->value = n;
+    new_node->n = n;
     new_node->next = NULL;
     if (*stack_head == NULL)
     {

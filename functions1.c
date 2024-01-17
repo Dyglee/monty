@@ -5,15 +5,15 @@
  * @stack_head: Pointer to the head of the stack.
  * @line_number: Line number in the file.
  */
-void print_all(stack_node **stack_head, unsigned int line_number)
+void print_all(stack_t **stack_head, unsigned int line_number)
 {
-    stack_node *current_node = *stack_head;
+    stack_t *current_node = *stack_head;
 
     (void)line_number;
 
     while (current_node)
     {
-        printf("%d\n", current_node->value);
+        printf("%d\n", current_node->n);
         current_node = current_node->next;
     }
 }
@@ -23,7 +23,7 @@ void print_all(stack_node **stack_head, unsigned int line_number)
  * @stack_head: Pointer to the head of the stack.
  * @line_number: Line number in the file.
  */
-void print_top(stack_node **stack_head, unsigned int line_number)
+void print_top(stack_t **stack_head, unsigned int line_number)
 {
     if (*stack_head == NULL)
     {
@@ -33,7 +33,7 @@ void print_top(stack_node **stack_head, unsigned int line_number)
         free_stack_nodes(*stack_head);
         exit(EXIT_FAILURE);
     }
-    printf("%d\n", (*stack_head)->value);
+    printf("%d\n", (*stack_head)->n);
 }
 
 /**
@@ -41,9 +41,9 @@ void print_top(stack_node **stack_head, unsigned int line_number)
  * @stack_head: Pointer to the head of the stack.
  * @line_number: Line number in the file.
  */
-void pop_element(stack_node **stack_head, unsigned int line_number)
+void pop_element(stack_t **stack_head, unsigned int line_number)
 {
-    stack_node *temp;
+    stack_t *temp;
 
     if (*stack_head == NULL)
     {
@@ -64,9 +64,9 @@ void pop_element(stack_node **stack_head, unsigned int line_number)
  * @stack_head: Pointer to the head of the stack.
  * @line_number: Line number in the file.
  */
-void swap_top_two(stack_node **stack_head, unsigned int line_number)
+void swap_top_two(stack_t **stack_head, unsigned int line_number)
 {
-    stack_node *current_node;
+    stack_t *current_node;
     int stack_length = 0, temp;
 
     current_node = *stack_head;
@@ -86,7 +86,7 @@ void swap_top_two(stack_node **stack_head, unsigned int line_number)
     }
 
     current_node = *stack_head;
-    temp = current_node->value;
-    current_node->value = current_node->next->value;
-    current_node->next->value = temp;
+    temp = current_node->n;
+    current_node->n = current_node->next->n;
+    current_node->next->n = temp;
 }

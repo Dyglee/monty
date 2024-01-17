@@ -5,7 +5,7 @@
  * @stack_head: Pointer to the head of the stack.
  * @line_number: Line number in the file.
  */
-void push_element(stack_node **stack_head, unsigned int line_number)
+void push_element(stack_t **stack_head, unsigned int line_number)
 {
     int n, j = 0, flag = 0;
 
@@ -15,7 +15,7 @@ void push_element(stack_node **stack_head, unsigned int line_number)
             j++;
         for (; global.argument[j] != '\0'; j++)
         {
-            if (global.argument[j] > 57 || global.argument[j] < 48)
+            if (global.argument[j] > '9' || global.argument[j] < '0')
                 flag = 1;
         }
         if (flag == 1)
@@ -41,3 +41,4 @@ void push_element(stack_node **stack_head, unsigned int line_number)
     else
         add_queue(stack_head, n);
 }
+

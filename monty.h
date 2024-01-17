@@ -11,10 +11,10 @@
 
 typedef struct stack_s
 {
-    int value;
+    int n;
     struct stack_s *prev;
     struct stack_s *next;
-} stack_node;
+} stack_t;
 
 typedef struct bus_s
 {
@@ -29,19 +29,19 @@ extern global_vars global;
 typedef struct instruction_s
 {
     char *opcode;
-    void (*handler)(stack_node **stack, unsigned int line_number);
+    void (*handler)(stack_t **stack, unsigned int line_number);
 } instruction;
 
-void push_element(stack_node **stack_head, unsigned int line_number);
-void print_all(stack_node **stack_head, unsigned int line_number);
-void print_top(stack_node **stack_head, unsigned int line_number);
-void swap_top_two(stack_node **stack_head, unsigned int line_number);
-void add_top_two(stack_node **stack_head, unsigned int line_number);
-void do_nothing(stack_node **stack_head, unsigned int line_number);
-void free_stack_nodes(stack_node *stack_head);
-void add_node(stack_node **stack_head, int n);
-void add_queue(stack_node **stack_head, int n);
-void process_line(stack_node **stack_head, unsigned int line_number);
+void push_element(stack_t **stack_head, unsigned int line_number);
+void print_all(stack_t **stack_head, unsigned int line_number);
+void print_top(stack_t **stack_head, unsigned int line_number);
+void swap_top_two(stack_t **stack_head, unsigned int line_number);
+void add_top_two(stack_t **stack_head, unsigned int line_number);
+void do_nothing(stack_t **stack_head, unsigned int line_number);
+void free_stack_nodes(stack_t *stack_head);
+void add_node(stack_t **stack_head, int n);
+void add_queue(stack_t **stack_head, int n);
+void process_line(stack_t **stack_head, unsigned int line_number);
 int is_number(char *str);
 #endif /* MONTY_H */
 
