@@ -25,6 +25,18 @@ void process_line(stack_t **stack_head, unsigned int line_number, char *line)
     {
         pop(stack_head, line_number);
     }
+    else if (strcmp(token, "swap") == 0)
+    {
+        swap(stack_head, line_number);
+    }
+    else if (strcmp(token, "add") == 0)
+    {
+        add(stack_head, line_number);
+    }
+    else if (strcmp(token, "nop") == 0)
+    {
+        nop(stack_head, line_number);
+    }
     else
     {
         fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
