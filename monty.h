@@ -46,5 +46,6 @@ void free_stack_nodes(stack_t *stack_head);
 void process_line(stack_t **stack_head, unsigned int line_number, char *line);
 int is_number(char *str);
 void add_node(stack_t **stack_head, int n);
+void pint(stack_t **stack_head, unsigned int line_number);
 #endif /* MONTY_H */
 

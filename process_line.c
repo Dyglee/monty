@@ -17,6 +17,10 @@ void process_line(stack_t **stack_head, unsigned int line_number, char *line)
     {
         print_all(stack_head, line_number);
     }
+        else if (strcmp(token, "pint") == 0)
+    {
+        pint(stack_head, line_number);
+    }
     else
     {
         fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
